@@ -21,6 +21,7 @@ Frame.prototype.bowl = function(score) {
   }
   this._testScore(score);
   this._bowls[this._bowlIndex] = score;
+  this._bowlIndex += 1;
   return this;
 };
 

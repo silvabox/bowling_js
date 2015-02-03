@@ -68,4 +68,46 @@ describe('Frame', function() {
       expect(frame.firstBowl()).toEqual(8);
     });
   });
+
+  describe('second bowl', function() {
+    beforeEach(function() {
+      frame.bowl(6);
+    });
+
+    it('returns the frame', function() {
+      expect(frame.bowl(3)).toEqual(frame);
+    });
+
+    describe('is under 0', function() {
+      it('throws an error', function() {
+        expect(function() {frame.bowl(-1)}).toThrow();
+      });
+    });
+
+    describe('take score over 10', function() {
+      it('throws an error', function() {
+        expect(function() {frame.bowl(5)}).toThrow();
+      });
+    });
+  });
+
+  describe('second bowl after a strike', function() {
+    beforeEach(function() {
+      frame.bowl(10);
+    });
+
+    it('thows an error', function() {
+      expect(function() {frame.roll(1)}).toThrow();
+    });
+  });
+
+  describe('secondBowl', function() {
+    it('returns null at first', function(){
+      expect(frame.secondBowl()).toBeNull();
+    });
+    it('returns the score of the secondBowl', function() {
+      frame.bowl(0).bowl(7);
+      expect(frame.secondBowl()).toEqual(7);
+    });
+  });
 });
