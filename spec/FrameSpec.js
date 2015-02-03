@@ -13,6 +13,54 @@ describe('Frame', function() {
         expect(function() {frame.firstBowl(11)}).toThrow();
       });
     });
+
+    describe('under 0', function() {
+      it('throws an error', function() {
+        expect(function() {frame.firstBowl(-1)}).toThrow();
+      });
+    });
+
+    describe('with secondBowl', function() {
+      beforeEach(function() {
+        frame.secondBowl(6);
+      });
+
+      describe('over 4', function() {
+        it('throws an error', function() {
+          expect(function() {frame.firstBowl(5)}).toThrow();
+        });
+      });
+    });
+  });
+
+  describe('secondBowl', function() {
+    it('returns the frame', function() {
+      expect(frame.secondBowl(8)).toEqual(frame);
+    });
+
+    describe('over 10', function() {
+      it('throws an error', function() {
+        expect(function() {frame.firstBowl(11)}).toThrow();
+      });
+    });
+
+    describe('under 0', function() {
+      it('throws an error', function() {
+        expect(function() {frame.firstBowl(-1)}).toThrow();
+      });
+    });
+
+    describe('with first bowl', function() {
+      beforeEach(function() {
+        frame.firstBowl(5);
+      });
+
+      describe('over 5', function() {
+        it('throws an error', function() {
+          expect(function() {frame.secondBowl(6)}).toThrow();
+        });
+      });
+    });
   });
 
   it('can receive a second bowl and return the frame', function() {
