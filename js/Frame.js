@@ -1,6 +1,7 @@
 function Frame() {
   this._bowls = [null, null];
   this._bowlIndex = 0;
+  this._nextFrame = null
 };
 
 Frame.prototype.firstBowl = function() {
@@ -33,6 +34,14 @@ Frame.prototype.isASpare = function() {
   return (this._frameScore() === 10) && (!this.isAStrike());
 };
 
+Frame.prototype.setNextFrame = function(frame) {
+  this._nextFrame = frame;
+  return frame;
+};
+
+Frame.prototype.nextFrame = function(frame) {
+  return this._nextFrame;
+};
 
 Frame.prototype._frameScore = function() {
   var score = this._bowls[0] || 0;

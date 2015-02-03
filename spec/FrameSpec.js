@@ -148,4 +148,23 @@ describe('Frame', function() {
       expect(frame.secondBowl()).toEqual(7);
     });
   });
+
+  describe('nextFrame', function() {
+    it('returns null', function() {
+      expect(frame.nextFrame()).toBeNull();
+    })
+  });
+
+  describe('setNextFrame', function(){
+    it('returns the next frame', function() {
+      newFrame = new Frame();
+      expect(frame.setNextFrame(newFrame)).toEqual(newFrame);
+    });
+
+    it('sets the next frame', function() {
+      newFrame = new Frame();
+      frame.setNextFrame(newFrame);
+      expect(frame.nextFrame()).toEqual(newFrame);
+    });
+  });
 });
