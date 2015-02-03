@@ -1,8 +1,13 @@
 function Frame() {
-  this._bowls = [];
+  this._bowls = [null, null];
 }
 
 Frame.prototype.firstBowl = function(score) {
+  if (score > 10) {
+    throw 'Score cannot exceed 10';
+  } else if (score < 0) {
+    throw 'Score must be greater than 0'
+  }
   this._bowls[0] = score;
   return this;
 }
