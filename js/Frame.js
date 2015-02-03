@@ -29,6 +29,10 @@ Frame.prototype.isAStrike = function() {
   return this.firstBowl() === 10;
 };
 
+Frame.prototype.isASpare = function() {
+  return (this._frameScore() === 10) && (!this.isAStrike());
+};
+
 
 Frame.prototype._frameScore = function() {
   var score = this._bowls[0] || 0;

@@ -36,6 +36,12 @@ describe('Frame', function() {
           expect(frame.isAStrike()).toBeTruthy();
         });
       });
+
+      describe('isASpare', function() {
+        it('returns false', function() {
+          expect(frame.isASpare()).toBeFalsy();
+        });
+      });
       
       it('prevents further bowls', function() {
         expect(frame.canBowl()).toBeFalsy();
@@ -84,9 +90,41 @@ describe('Frame', function() {
       });
     });
 
-    describe('take score over 10', function() {
+    describe('takes score over 10', function() {
       it('throws an error', function() {
         expect(function() {frame.bowl(5)}).toThrow();
+      });
+    });
+
+    it('prevents further bowls', function() {
+      frame.bowl(3);
+      expect(frame.canBowl()).toBeFalsy();
+    });
+
+    describe('is a spare', function() {
+      beforeEach(function() {
+          frame.bowl(4);
+      });
+
+      describe('isASpare', function() {
+        it('returns true', function() {
+          expect(frame.isASpare()).toBeTruthy();
+        });
+      });
+
+      describe('isAStrike', function() {
+        it('returns false', function() {
+          expect(frame.isAStrike()).toBeFalsy();
+        });
+      });
+    });
+
+    describe('is not a spare', function() {
+      describe('isASpare', function() {
+        it('returns false', function() {
+          frame.bowl(3);
+          expect(frame.isASpare()).toBeFalsy();
+        });
       });
     });
   });
