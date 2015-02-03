@@ -14,15 +14,47 @@ describe('Frame', function() {
       expect(frame.bowl(8)).toEqual(frame);
     });
 
-    describe('under 0', function() {
+    describe('is under 0', function() {
       it('throws an error', function() {
         expect(function() {frame.bowl(-1)}).toThrow();
       });
     });
 
-    describe('over 10', function() {
+    describe('is over 10', function() {
       it('throws an error', function() {
         expect(function() {frame.bowl(11)}).toThrow();
+      });
+    });
+
+    describe('is a strike', function() {
+      beforeEach(function() {
+        frame.bowl(10);
+      });
+
+      describe('isAStrike', function() {
+        it('returns true', function() {
+          expect(frame.isAStrike()).toBeTruthy();
+        });
+      });
+      
+      it('prevents further bowls', function() {
+        expect(frame.canBowl()).toBeFalsy();
+      });
+    });
+
+    describe('is not a strike', function() {
+      beforeEach(function() {
+        frame.bowl(9);
+      });
+
+      describe('isAStrike', function() {
+        it('returns false', function() {
+          expect(frame.isAStrike()).toBeFalsy();
+        });
+      });
+      
+      it('allows further bowls', function() {
+        expect(frame.canBowl()).toBeTruthy();
       });
     });
   });

@@ -12,7 +12,7 @@ Frame.prototype.secondBowl = function() {
 };
 
 Frame.prototype.canBowl = function() {
-  return true;
+  return (this._bowlIndex < 2) && !this.isAStrike();
 };
 
 Frame.prototype.bowl = function(score) {
@@ -25,7 +25,7 @@ Frame.prototype.bowl = function(score) {
 };
 
 Frame.prototype.isAStrike = function() {
-  return false;
+  return this.firstBowl() === 10;
 };
 
 
