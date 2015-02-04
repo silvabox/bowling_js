@@ -211,11 +211,20 @@ describe('Frame', function() {
       });
 
       describe('with a next frame', function() {
-        it('returns the 10 + the two bowls of the next frame', function(){
+        beforeEach(function(){
           nextFrame = new Frame();
-          nextFrame.bowl(3).bowl(5);
           frame.setNextFrame(nextFrame);
+        });
+        it('returns the 10 + the two bowls of the next frame', function(){
+          nextFrame.bowl(3).bowl(5);
           expect(frame.score()).toEqual(18);
+        });
+
+        describe('that is a spare', function(){
+          it('returns 20', function() {
+            nextFrame.bowl(5).bowl(5);
+            expect(frame.score()).toEqual(20);
+          });
         });
       });
     });
