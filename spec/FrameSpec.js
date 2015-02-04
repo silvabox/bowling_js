@@ -3,6 +3,12 @@ describe('Frame', function() {
     frame = new Frame();
   });
 
+  describe('isFinal', function(){
+    it('returns false', function(){
+      expect(frame.isFinal()).toBeFalsy();
+    });
+  });
+
   describe('canBowl', function() {
     it('returns true', function(){
       expect(frame.canBowl()).toBeTruthy();

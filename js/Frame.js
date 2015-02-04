@@ -4,6 +4,10 @@ function Frame() {
   this._nextFrame = null
 };
 
+Frame.prototype.isFinal = function() {
+  return false;
+};
+
 Frame.prototype.firstBowl = function() {
   return this._bowls[0];
 };
@@ -16,12 +20,13 @@ Frame.prototype.canBowl = function() {
   return (this._bowlIndex < 2) && !this.isAStrike();
 };
 
-Frame.prototype.bowl = function(score) {
+Frame.prototype.bowl = function(pins) {
   if (!this.canBowl()) {
     throw 'The frame cannot accept another bowl';
   }
-  this._testScore(score);
-  this._bowls[this._bowlIndex] = score;
+  this._testPins(pins);
+  if (this._bowlIndex > 0) { this._testFrameScore(pins); }
+  this._bowls[this._bowlIndex] = pins;
   this._bowlIndex += 1;
   return this;
 };
@@ -43,16 +48,23 @@ Frame.prototype.nextFrame = function(frame) {
   return this._nextFrame;
 };
 
-Frame.prototype._frameScore = function() {
-  var score = this._bowls[0] || 0;
-  score += this._bowls[1] || 0;
+Frame.prototype._frameScore = function(fromIndex) {
+  fromIndex = fromIndex || 0;
+  var score = this._bowls[fromIndex] || 0;
+  score += this._bowls[fromIndex + 1] || 0;
   return score;
 };
 
-Frame.prototype._testScore = function(score) {
-  if (this._frameScore() + score > 10) {
-    throw 'Frame score cannot exceed 10';
-  } else if (score < 0) {
-    throw 'Score must be greater than 0'
+Frame.prototype._testFrameScore = function(pins) {
+  if ((this._frameScore() + pins) > 10) {
+    throw 'Total score cannot exceed 10';
+  }
+};
+
+Frame.prototype._testPins = function(pins) {
+  if (pins > 10) {
+    throw 'Pins cannot exceed 10';
+  } else if (pins < 0) {
+    throw 'Pins must be greater than 0'
   }
 };

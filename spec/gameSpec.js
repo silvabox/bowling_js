@@ -22,6 +22,10 @@ describe('Game', function() {
       game = new Game(1);
     });
 
+    it('creates one final frame', function() {
+      expect(game.currentFrame.isFinal()).toBeTruthy();
+    });
+
     it('can bowl', function() {
       expect(game.canBowl()).toBeTruthy();
     });
@@ -30,16 +34,25 @@ describe('Game', function() {
       beforeEach(function() {
         game.bowl(2).bowl(3);
       });
-      
+
       it('prevents further bowls', function(){
         expect(game.canBowl()).toBeFalsy();
       });
     });
+  });
 
-    describe('with strike', function() {
-      it('prevents further bowls', function() {
-        expect(game.bowl(10).canBowl()).toBeFalsy();
-      });
-    });
+  // describe('with two frames', function(){
+  //   describe('when frame finishes', function(){
+  //     it('sets the first frames next frame', function(){
+  //       frame = game.currentFrame;
+  //       game.bowl(3).bowl(4);
+  //       expect(game.currentFrame).notToEqual(frame);
+  //       expect(frame.nextFrame()).toEqual(game.currentFrame);
+  //     });
+  //   });
+  // });
+
+  describe('score', function() {
+    describe
   });
 });

@@ -1,6 +1,12 @@
 function Game(frames) {
   this.frames = frames || 10;
-  this.currentFrame = new Frame();
+  if ((this.frames < 1) || (this.frames > 10)) { throw 'Invalid number of frames'}
+  
+  if (this.frames === 1) {
+    this.currentFrame = new FinalFrame();
+  } else {
+    this.currentFrame = new Frame();
+  }
   this.frameNumber = 1;
 }
 
