@@ -68,3 +68,17 @@ Frame.prototype._testPins = function(pins) {
     throw 'Pins must be greater than 0'
   }
 };
+
+Frame.prototype.score = function() {
+  if (this.isAStrike()) {
+    return this._strikeScore();
+  } else if (this.isASpare()) {
+    return this._spareScore();
+  } else {
+    return this._frameScore();
+  }
+};
+
+Frame.prototype._strikeScore = function() {
+
+}

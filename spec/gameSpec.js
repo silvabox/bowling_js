@@ -60,6 +60,13 @@ describe('Game', function() {
   });
 
   describe('score', function() {
-    describe
+    describe('for gutter game', function() {
+      it('returns 0', function(){
+        while(game.canBowl()) {
+          game.bowl(0);
+        }
+        expect(game.score()).toEqual(0);
+      });
+    });
   });
 });

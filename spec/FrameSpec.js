@@ -173,4 +173,17 @@ describe('Frame', function() {
       expect(frame.nextFrame()).toEqual(newFrame);
     });
   });
+
+  describe('score', function() {
+    describe('for a normal frame', function() {
+      it('returns the sum of the two bowls', function() {
+        frame.bowl(2).bowl(7);
+        expect(frame.score()).toEqual(9);
+      });
+    });
+
+    describe('for a strike', function() {
+      
+    });
+  });
 });

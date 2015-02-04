@@ -8,6 +8,7 @@ function Game(frames) {
     this.currentFrame = new Frame();
   }
   this.frameNumber = 1;
+  this._firstFrame = this.currentFrame;
 }
 
 Game.prototype.canBowl = function() {
@@ -31,3 +32,14 @@ Game.prototype.bowl = function(score) {
   }
   return this;
 };
+
+Game.prototype.score = function() {
+  var score = 0;
+  var frame = this.currentFrame;
+  
+  do {
+    score += frame.score();
+  }
+  while(!frame.isFinal());
+  return score;
+}
