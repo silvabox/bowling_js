@@ -192,7 +192,7 @@ describe('Frame', function() {
       });
 
       describe('with a next frame', function() {
-        it('returns the 10 + this first bowl of the next frame', function(){
+        it('returns the 10 + the first bowl of the next frame', function(){
           nextFrame = new Frame();
           nextFrame.bowl(3);
           frame.setNextFrame(nextFrame);
@@ -202,7 +202,22 @@ describe('Frame', function() {
     });
 
     describe('for a strike', function() {
+      beforeEach(function(){
+        frame.bowl(10);
+      });
 
+      it('returns 10', function(){
+        expect(frame.score()).toEqual(10);
+      });
+
+      describe('with a next frame', function() {
+        it('returns the 10 + the two bowls of the next frame', function(){
+          nextFrame = new Frame();
+          nextFrame.bowl(3).bowl(5);
+          frame.setNextFrame(nextFrame);
+          expect(frame.score()).toEqual(18);
+        });
+      });
     });
   });
 });
