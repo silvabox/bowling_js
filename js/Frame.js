@@ -88,5 +88,9 @@ Frame.prototype._spareScore = function() {
 }
 
 Frame.prototype._strikeScore = function() {
-
+ if (this._nextFrame) {
+    return this._frameScore() + this._nextFrame.firstBowl() + this._nextFrame.secondBowl();
+  } else {
+    return this._frameScore();
+  } 
 }

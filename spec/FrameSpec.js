@@ -183,13 +183,22 @@ describe('Frame', function() {
     });
 
     describe('for a spare', function() {
-      it('returns 10', function() {
+      beforeEach(function(){
         frame.bowl(5).bowl(5);
+      });
+
+      it('returns 10', function() {
         expect(frame.score()).toEqual(10);
       });
-      describe('with a next frame', function() {
 
-      })
+      describe('with a next frame', function() {
+        it('returns the 10 + this first bowl of the next frame', function(){
+          nextFrame = new Frame();
+          nextFrame.bowl(3);
+          frame.setNextFrame(nextFrame);
+          expect(frame.score()).toEqual(13);
+        });
+      });
     });
 
     describe('for a strike', function() {
