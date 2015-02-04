@@ -16,13 +16,18 @@ Game.prototype.canBowl = function() {
 
 Game.prototype.bowl = function(score) {
   if (!this.currentFrame.canBowl()) {
-    if (this.frameNumber === this.frames) {
-      throw 'Game over'
-    } else {
-      this.frameNumber += 1;
-      this.currentFrame = new Frame();
-    }
-  }
+    throw 'Game over'
+  } 
+
   this.currentFrame.bowl(score);
+  if (!this.currentFrame.canBowl() && !this.currentFrame.isFinal()) {
+      this.frameNumber += 1;
+      if (this.frameNumber = this.frames) {
+        this.currentFrame.setNextFrame(new FinalFrame());
+      } else {
+        this.currentFrame.setNextFrame(new Frame());
+      }
+      this.currentFrame = this.currentFrame.nextFrame(); 
+  }
   return this;
 };

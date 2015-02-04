@@ -41,16 +41,23 @@ describe('Game', function() {
     });
   });
 
-  // describe('with two frames', function(){
-  //   describe('when frame finishes', function(){
-  //     it('sets the first frames next frame', function(){
-  //       frame = game.currentFrame;
-  //       game.bowl(3).bowl(4);
-  //       expect(game.currentFrame).notToEqual(frame);
-  //       expect(frame.nextFrame()).toEqual(game.currentFrame);
-  //     });
-  //   });
-  // });
+  describe('with two frames', function(){
+    describe('when frame finishes', function(){
+      beforeEach(function(){
+        frame = game.currentFrame;
+        game.bowl(3).bowl(4);
+      });
+
+      it('sets next frame of the first frame', function(){
+        expect(game.currentFrame).not.toEqual(frame);
+        expect(frame.nextFrame()).toEqual(game.currentFrame);
+      });
+      
+      it('sets the next frame as a final frame', function(){
+        expect(game.currentFrame.isFinal()).toBeTruthy();
+      });
+    });
+  });
 
   describe('score', function() {
     describe
