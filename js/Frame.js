@@ -13,6 +13,9 @@ Frame.prototype.firstBowl = function() {
 };
 
 Frame.prototype.secondBowl = function() {
+  if ((this.isAStrike()) && this._nextFrame) {
+    return this._nextFrame.firstBowl();
+  }
   return this._bowls[1];
 };
 

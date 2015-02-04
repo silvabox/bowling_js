@@ -153,6 +153,25 @@ describe('Frame', function() {
       frame.bowl(0).bowl(7);
       expect(frame.secondBowl()).toEqual(7);
     });
+
+    describe('for a strike', function() {
+      beforeEach(function(){
+        frame.bowl(10);
+      });
+
+      it('returns null', function(){
+        expect(frame.secondBowl()).toBeNull();
+      });
+
+      describe('with a next frame', function(){
+        it('returns the first bowl of the next frame', function(){
+          nextFrame = new Frame();
+          frame.setNextFrame(nextFrame);
+          nextFrame.bowl(7);
+          expect(frame.secondBowl()).toEqual(7);
+        });
+      });
+    });
   });
 
   describe('nextFrame', function() {
@@ -224,6 +243,28 @@ describe('Frame', function() {
           it('returns 20', function() {
             nextFrame.bowl(5).bowl(5);
             expect(frame.score()).toEqual(20);
+          });
+        });
+
+        describe('that is a strike', function(){
+          beforeEach(function(){
+            nextFrame.bowl(10);
+          });
+
+          it('returns 20', function() {
+            expect(frame.score()).toEqual(20);
+          });
+
+          describe('with a next frame', function(){
+            beforeEach(function(){
+              nextNextFrame = new Frame();
+              nextFrame.setNextFrame(nextNextFrame);
+            });
+
+            it('returns 10 + 10 + the first bowl of the next next frame', function(){
+              nextNextFrame.bowl(6);
+              expect(frame.score()).toEqual(26);
+            });
           });
         });
       });
