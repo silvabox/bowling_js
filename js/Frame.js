@@ -79,6 +79,14 @@ Frame.prototype.score = function() {
   }
 };
 
+Frame.prototype._spareScore = function() {
+  if (this._nextFrame) {
+    return this._frameScore() + this._nextFrame.firstBowl()
+  } else {
+    return this._frameScore();
+  }
+}
+
 Frame.prototype._strikeScore = function() {
 
 }

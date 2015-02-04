@@ -182,8 +182,18 @@ describe('Frame', function() {
       });
     });
 
+    describe('for a spare', function() {
+      it('returns 10', function() {
+        frame.bowl(5).bowl(5);
+        expect(frame.score()).toEqual(10);
+      });
+      describe('with a next frame', function() {
+
+      })
+    });
+
     describe('for a strike', function() {
-      
+
     });
   });
 });
