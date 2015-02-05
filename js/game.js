@@ -22,15 +22,19 @@ Game.prototype.bowl = function(score) {
 
   this._currentFrame.bowl(score);
   if (!this._currentFrame.canBowl() && !this._currentFrame.isFinal()) {
-      this.frameNumber += 1;
-      if (this.frameNumber === this.frames) {
-        this._currentFrame.setNextFrame(new FinalFrame());
-      } else {
-        this._currentFrame.setNextFrame(new Frame());
-      }
-      this._currentFrame = this._currentFrame.nextFrame(); 
+    this._setNextFrame();
   }
   return this;
+};
+
+Game.prototype._setNextFrame() {
+  this.frameNumber += 1;
+  if (this.frameNumber === this.frames) {
+    this._currentFrame.setNextFrame(new FinalFrame());
+  } else {
+    this._currentFrame.setNextFrame(new Frame());
+  }
+  this._currentFrame = this._currentFrame.nextFrame();
 };
 
 Game.prototype.currentFrame = function(){
