@@ -12,3 +12,6 @@ The solution uses a linked-list-style approach, with each frame having a referen
 The game can then walk this list (starting at the first frame) to calculate the total score.
 
 Note how `bowl()` methods return `this` to allow chaining.  This is provided merely as a convenience, but makes for a nice interface.
+
+## A note on FinalFrame
+`FinalFrame.prototype = new Frame();` is not a satisfactory inheritance pattern as it adds the instance members of `Frame` to `FinalFrame.prototype`.  This is overcome by repeating the instance members in `FinalFrame` such that instances of `FinalFrame` will have them as their own properties. I am investigating the proper alternative.
