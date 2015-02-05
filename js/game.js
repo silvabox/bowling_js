@@ -27,7 +27,7 @@ Game.prototype.bowl = function(score) {
   return this;
 };
 
-Game.prototype._setNextFrame() {
+Game.prototype._setNextFrame = function() {
   this.frameNumber += 1;
   if (this.frameNumber === this.frames) {
     this._currentFrame.setNextFrame(new FinalFrame());
