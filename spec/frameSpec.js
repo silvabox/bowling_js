@@ -75,7 +75,7 @@ describe('Frame', function() {
     it('returns null at first', function(){
       expect(frame.firstBowl()).toBeNull();
     });
-    it('returns the score of the firstBowl', function() {
+    it('returns the score of the first bowl', function() {
       frame.bowl(8);
       expect(frame.firstBowl()).toEqual(8);
     });
@@ -149,7 +149,7 @@ describe('Frame', function() {
     it('returns null at first', function(){
       expect(frame.secondBowl()).toBeNull();
     });
-    it('returns the score of the secondBowl', function() {
+    it('returns the score of the second bowl', function() {
       frame.bowl(0).bowl(7);
       expect(frame.secondBowl()).toEqual(7);
     });
@@ -211,7 +211,7 @@ describe('Frame', function() {
       });
 
       describe('with a next frame', function() {
-        it('returns the 10 + the first bowl of the next frame', function(){
+        it('returns 10 + the first bowl of the next frame', function(){
           nextFrame = new Frame();
           nextFrame.bowl(3);
           frame.setNextFrame(nextFrame);
