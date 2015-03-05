@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/silvabox/bowling_js/badge.svg)](https://coveralls.io/r/silvabox/bowling_js)
+
 # bowling_js
 Makers Academy bowling scorecard solution with Jasmine
 
