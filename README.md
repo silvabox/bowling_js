@@ -14,4 +14,20 @@ The game can then walk this list (starting at the first frame) to calculate the 
 Note how `bowl()` methods return `this` to allow chaining.  This is provided merely as a convenience, but makes for a nice interface.
 
 ## A note on FinalFrame
-`FinalFrame.prototype = new Frame();` is not a satisfactory inheritance pattern as it adds the instance members of `Frame` to `FinalFrame.prototype`.  This is overcome by repeating the instance members in `FinalFrame` such that instances of `FinalFrame` will have them as their own properties. I am investigating the proper alternative.
+`FinalFrame` uses a 'classical' inheritance pattern - i.e. it's aim is to construct objects whose prototype inherits the prototype of `Frame` and whose constructor also calls the `Frame` constructor.
+
+This is achieved by overwriting the `FinalFrame` function's prototype with a new object derived from the `Frame` prototype:
+```
+FinalFrame.prototype = Object.create(Frame.prototype);
+```
+However, this means `FinalFrame`'s prototype now inherits its `constructor` property from `Frame`'s prototype; this returns `Frame`, which we don't want, so we overwrite the property:
+```
+FinalFrame.prototype.constructor = FinalFrame;
+```
+
+Finally, we call the `Frame` constructor from `FinalFrame` to correctly initialize the new object:
+```
+function FinalFrame() {
+  Frame.call(this);
+};
+```

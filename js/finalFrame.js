@@ -1,10 +1,9 @@
 function FinalFrame() {
-  this._bowls = [null, null];
-  this._bowlIndex = 0;
-  this._nextFrame = null
-}
+  Frame.call(this);
+};
 
-FinalFrame.prototype = new Frame();
+FinalFrame.prototype = Object.create(Frame.prototype);
+FinalFrame.prototype.constructor = FinalFrame;
 
 FinalFrame.prototype.isFinal = function() {
   return true;
