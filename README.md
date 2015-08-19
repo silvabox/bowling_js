@@ -27,7 +27,7 @@ However, this means `FinalFrame`'s prototype now inherits its `constructor` prop
 FinalFrame.prototype.constructor = FinalFrame;
 ```
 
-Finally, we call the `Frame` constructor from `FinalFrame` to correctly initialize the new object:
+Finally, we call the `Frame` constructor from `FinalFrame` to correctly initialize new objects:
 ```
 function FinalFrame() {
   Frame.call(this);
