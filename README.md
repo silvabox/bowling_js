@@ -22,12 +22,12 @@ This is achieved by overwriting the `FinalFrame` function's prototype with a new
 ```
 FinalFrame.prototype = Object.create(Frame.prototype);
 ```
-However, this means `FinalFrame`'s prototype now inherits its `constructor` property from `Frame`'s prototype; this returns `Frame`, which we don't want, so we overwrite the property:
+However, this means `FinalFrame`'s prototype (the new object just created above) now inherits its `constructor` property from the prototype of `Frame`; which returns `Frame`, which we don't want, so we overwrite the property:
 ```
 FinalFrame.prototype.constructor = FinalFrame;
 ```
 
-Finally, we call the `Frame` constructor from `FinalFrame` to correctly initialize new objects:
+Finally, we call `Frame` from `FinalFrame` to ensure new objects are correctly initialized:
 ```
 function FinalFrame() {
   Frame.call(this);
